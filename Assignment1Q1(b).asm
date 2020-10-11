@@ -1,3 +1,5 @@
+ ##Lukasz Filanowski 18414616
+    
     .data
 D1: .word 1,2,4
 D2: .word 5,6,8

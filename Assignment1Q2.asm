@@ -1,3 +1,5 @@
+ ##Lukasz Filanowski 18414616
+         
          .data
 array:   .word 1, 2, 3
          .text
