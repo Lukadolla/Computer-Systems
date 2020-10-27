@@ -10,9 +10,25 @@ main:
          li $a1, 7     # X
          li $a2, 0     # Y
          jal putch
+         jal input
          
          li $v0, 10
          syscall
+         
+         
+input:    #function to read from keyboard
+       li $t7, 0xffff0000 #RCR
+       li $t8, 0xffff0004 #RDR
+       
+wait:
+      lw $t9, 0($t7)
+      
+      beqz $t9, wait
+      lw $v0, 0($t8)
+      
+      jr $ra
+                  
+         
          
 putch: 
         la $t0, font8x8 
