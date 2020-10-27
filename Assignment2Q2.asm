@@ -1,4 +1,4 @@
-#Lukasz Filanowski 18414616         
+#Lukasz Filanowski 18414616
          .data
 screen:  .space 524288     
          
@@ -10,23 +10,9 @@ main:
          li $a1, 7     # X
          li $a2, 0     # Y
          jal putch
-         jal input
          
          li $v0, 10
          syscall
-
-input:    #function to read from keyboard
-       li $t7, 0xffff0000 #RCR
-       li $t8, 0xffff0004 #RDR
-       
-wait:
-      lw $t9, 0($t7)
-      
-      beqz $t9, wait
-      lw $v0, 0($t8)
-      
-      jr $ra
-         
          
 putch: 
         la $t0, font8x8 
@@ -51,8 +37,8 @@ loop2:
        
        andi $s1, $t5, 1 
        
-       beqz $s1, ifend 
-       la $a3, 0xffffff     
+       beqz $s1, ifend #if(temp != 0)
+       la $a3, 0xffffff      #temp = 0xffffff
        sw $a3, 0($t6)
 ifend:
        subi $a1, $a1, 1
@@ -61,9 +47,9 @@ ifend:
   
        j loop2   
 end2:        
-       addi $t0, $t0, 1        
-       addi $t3, $t3, 1 
-       addi $a2, $a2, 1    
+       addi $t0, $t0, 1   #offset_font++       
+       addi $t3, $t3, 1  #offset_grid += 4*(512 - 8)
+       addi $a2, $a2, 1     #i++
        li $t4, 0
        li $a1, 7
        j loop1
