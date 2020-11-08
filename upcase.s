@@ -1,4 +1,5 @@
-        .data
+#Lukasz Filanowski 18414616
+             .data
 char_buffer: .byte 0
 
 .text
