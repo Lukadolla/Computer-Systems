@@ -15,14 +15,15 @@ obfuscate:
       la $t1, 0($a0)  #write address
       li $t2, 46     # '.' in ascii 
       li $t3, 32     #' ' in ascii
+      li $t5, 64     #ascii for last thing before letters '@'         
        
 loop:
       lb $t4, 0($t0)     #base + offset
       
       beq $t4, $t2, end   #exit if $t4 = '.' terminator
-      
       beq $t4, $t3, skip  #skip increment if there is a space
-      
+      ble $t4, $t5, skip  #skip increment if its not a letter
+
       addi $t4, $t4, 1   #increase ascii by 1
 
 skip:      
